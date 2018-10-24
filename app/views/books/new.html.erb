@@ -1,0 +1,24 @@
+<%= form_with model: @book, local: true do |f| %>
+<%#= form_with scope: :book, url: books_path %>
+<%#= form_with scope: "banana", url: books_path, local: true do |f| %>
+
+  <p>Title</p>
+  <%= f.text_field :title, placeholder: "TITLE" %>
+
+  <br />
+
+  <p>Select Author</p>
+  <%= f.select :author_id, Author.all.collect { |a| [ a.name, a.id ] } %>
+
+  <br />
+
+  <p>Select Genres</p>
+  <%= f.collection_check_boxes :genre_ids, Genre.all, :id, :name do |cb| %>
+    <div>
+      <%= cb.label %><%= cb.check_box %>
+    </div>
+  <% end %>
+
+  <%= f.submit %>
+
+<% end %>

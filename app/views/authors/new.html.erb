@@ -1,0 +1,24 @@
+<%= form_with model: @author, local: true do |f| %>
+
+  <p>Name</p>
+  <%= f.text_field :name, placeholder: "Author Name" %>
+
+  <%= f.fields_for :books, Book.new do |book_f| %>
+
+    <p>Title</p>
+    <%= book_f.text_field :title, placeholder: "TITLE" %>
+
+    <br />
+
+    <p>Select Genres</p>
+    <%= book_f.collection_check_boxes :genre_ids, Genre.all, :id, :name do |cb| %>
+      <div>
+        <%= cb.label %><%= cb.check_box %>
+      </div>
+    <% end %>
+
+  <% end %>
+
+  <%= f.submit %>
+
+<% end %>

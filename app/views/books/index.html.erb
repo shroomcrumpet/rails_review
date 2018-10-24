@@ -1,0 +1,15 @@
+<h1><%= link_to "NEW BOOK", new_book_path %></h1>
+<h1><%= link_to "NEW AUTHOR", new_author_path %></h1>
+
+<% @book.each do |b| %>
+
+  <h3><%= link_to b.title, show_book_path(custom_monkey_bananas: b.id, some_other_param: "HELLOOOOOOOOO") %>, by: <%= b.author.name %></h3>
+  <h3>Genres:</h3>
+  <% b.genres.each do |g| %>
+    <p><%= g.name %></p>
+  <% end %>
+
+
+  <p>---------------------------------------------------</p>
+
+<% end %>
